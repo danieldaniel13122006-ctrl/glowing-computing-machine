@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOGGS Pendaftaran</title>
+<style>
+    body { font-family: Arial, sans-serif; background-color: #f5f8ff; margin:0; padding:0; }
+    .container { max-width: 600px; margin: 30px auto; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2 { text-align: center; color: #1a73e8; }
+    h2 { margin-top: 0; }
+    p { line-height: 1.6; }
+    .button { background-color: #1a73e8; color: #fff; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-size: 16px; width: 100%; margin-top: 20px; }
+    .button:hover { background-color: #155ab6; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; font-weight: bold; color: #1a73e8; }
+    input, select { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; font-size: 16px; }
+    #preview-box { background-color: #e3f2fd; padding: 15px; border-radius: 6px; margin-top: 10px; white-space: pre-wrap; display: none; }
+    .info { margin-top: 20px; font-size: 14px; color: #1a73e8; }
+</style>
+</head>
+<body><div class="container" id="page-1">
+    <h1>(GOGGS)</h1>
+    <h2>Syarat & Ketentuan</h2>
+    <p>• OPEN PENYEWAAN AKUN GOGGS<br>
+• PERCHAT 400P / CH<br>
+• PERJAM 50K / JAM<br>
+• JIKA TEMBUS PER 100 CHAT KAMI BONUSKAN 10K / 100 CHAT<br>
+• JIKA TEMBUS PER 3 JAM KAMI BONUSKAN 50K<br>
+• MINIMAL 30 CHAT BARU PAY<br>
+• MINIMAL 30 MENIT BARU PAY<br>
+• PERNYATAAN HARUS DIBACA SEBELUM DIKIRIM KE ADMIN</p>
+    <button class="button" onclick="showForm()">Saya Setuju & Lanjut Isi Formulir</button>
+</div><div class="container" id="page-2" style="display:none;">
+    <h2>𝙁𝙊𝙍𝙐𝙈 𝙋𝙀𝙉𝘿𝘼𝙁𝙏𝘼𝙍𝘼𝙉 𝙂𝙊𝙂𝙂𝙎</h2>
+    <div class="form-group">
+        <label>USERNAME FB :</label>
+        <input type="text" id="username-fb" placeholder="Masukkan Username FB">
+    </div>
+    <div class="form-group">
+        <label>NO WHATSAPP :</label>
+        <input type="text" id="no-whatsapp" placeholder="Masukkan No WhatsApp">
+    </div>
+    <div class="form-group">
+        <label>PER CHAT / PER JAM :</label>
+        <input type="text" id="perchat" placeholder="Masukkan Per Chat / Per Jam">
+    </div>
+    <div class="form-group">
+        <label>JENIS BANK :</label>
+        <select id="jenis-bank">
+            <option value="" selected>Bank - E-Wallet</option>
+            <option value="BCA">BCA</option>
+            <option value="BRI">BRI</option>
+            <option value="BNI">BNI</option>
+            <option value="MANDIRI">MANDIRI</option>
+            <option value="SEABANK">SEABANK</option>
+            <option value="DANA">DANA</option>
+            <option value="GOPAY">GOPAY</option>
+            <option value="OVO">OVO</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>NO REKENING :</label>
+        <input type="text" id="no-rekening" placeholder="Masukkan No Rekening">
+    </div>
+    <div class="form-group">
+        <label>NAMA REKENING :</label>
+        <input type="text" id="nama-rekening" placeholder="Masukkan Nama Rekening">
+    </div><div id="preview-box"></div>
+<button class="button" onclick="copyText()">Salin</button>
+
+<div class="info">
+    <p>*Layanan Resmi Jasa Penyewaan Akun WhatsApp (GOGGS)</p>
+    <p>Username FB: <a href="https://www.facebook.com/share/1CvWgKj6T8/" target="_blank">Goggs Nham</a></p>
+    <p>Telegram: <a href="https://t.me/goggsform" target="_blank">@goggsform</a></p>
+</div>
+
+</div><script>
+function showForm() {
+    document.getElementById('page-1').style.display = 'none';
+    document.getElementById('page-2').style.display = 'block';
+}
+
+function updatePreview() {
+    let fb = document.getElementById('username-fb').value;
+    let wa = document.getElementById('no-whatsapp').value;
+    let perchat = document.getElementById('perchat').value;
+    let bank = document.getElementById('jenis-bank').value;
+    let norek = document.getElementById('no-rekening').value;
+    let namarek = document.getElementById('nama-rekening').value;
+
+    let previewText = `Username FB: ${fb}\nNo WhatsApp: ${wa}\nPer Chat / Per Jam: ${perchat}\nData Pencairan:\nBank/E-Wallet: ${bank}\nNo Rekening: ${norek}\nNama Rekening: ${namarek}`;
+
+    let previewBox = document.getElementById('preview-box');
+    previewBox.style.display = 'block';
+    previewBox.textContent = previewText;
+}
+
+function copyText() {
+    let previewBox = document.getElementById('preview-box');
+    navigator.clipboard.writeText(previewBox.textContent).then(() => {
+        alert('Teks berhasil disalin!');
+    });
+}
+
+// Update preview setiap kali user mengetik atau memilih dropdown
+let inputs = document.querySelectorAll('#page-2 input, #page-2 select');
+inputs.forEach(input => {
+    input.addEventListener('input', updatePreview);
+});
+inputs.forEach(select => {
+    select.addEventListener('change', updatePreview);
+});
+</script></body>
+</html>
